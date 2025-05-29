@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Amigos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e9f7ef;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .form-container {
+      background-color: white;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 300px;
+      text-align: center;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #25d366;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #128c7e;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Cadastre-se para fazer amigos</h2>
+    <form id="form">
+      <input type="text" id="nome" placeholder="Seu nome" required>
+      <input type="tel" id="telefone" placeholder="WhatsApp com DDD" required>
+      <button type="submit">Cadastrar</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const nome = document.getElementById("nome").value;
+      const telefone = document.getElementById("telefone").value.replace(/\D/g, ''); // remove não números
+
+      if (nome && telefone.length >= 10) {
+        localStorage.setItem("nome", nome);
+        localStorage.setItem("telefone", telefone);
+        window.location.href = "amigos.html";
+      } else {
+        alert("Preencha todos os campos corretamente.");
+      }
+    });
+  </script>
+</body>
+</html>

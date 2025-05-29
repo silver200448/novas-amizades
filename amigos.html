@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Amigos Disponíveis</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 30px;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    .friend {
+      background-color: white;
+      border-radius: 8px;
+      padding: 15px;
+      margin: 10px auto;
+      width: 300px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .friend a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 12px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 4px;
+      text-decoration: none;
+    }
+    .friend a:hover {
+      background-color: #128c7e;
+    }
+  </style>
+</head>
+<body>
+  <h2>👥 Encontre novos amigos</h2>
+  <div id="lista-amigos"></div>
+
+  <script>
+    const nome = localStorage.getItem("nome");
+    const telefone = localStorage.getItem("telefone");
+
+    const amigos = [
+      { nome: "João Silva", tel: "5511999990001" },
+      { nome: "Maria Oliveira", tel: "5511988880002" },
+      { nome: "Lucas Santos", tel: "5511977770003" }
+    ];
+
+    // Adiciona o próprio usuário à lista para testes (opcional)
+    if (nome && telefone) {
+      amigos.unshift({ nome, tel: "55" + telefone });
+    }
+
+    const container = document.getElementById("lista-amigos");
+
+    amigos.forEach(amigo => {
+      const div = document.createElement("div");
+      div.classList.add("friend");
+
+      div.innerHTML = `
+        <strong>${amigo.nome}</strong><br>
+        <a href="https://wa.me/${amigo.tel}" target="_blank">Conversar no WhatsApp</a>
+      `;
+
+      container.appendChild(div);
+    });
+  </script>
+</body>
+</html>
